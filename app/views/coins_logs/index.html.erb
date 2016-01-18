@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h2>用户列表</h2>
+<%= search_form_for @q do |f| %>
+ <%= f.search_field :caishuo_id_eq, placeholder: "用户 ID" %>
+  <%= f.search_field :coins_id_eq ,placeholder: "产品 ID"%>
+  <%= f.search_field :name_cont,placeholder: "用户姓名" %>
+  购买状态: 
+  <%= f.select :status_eq, options_for_select(@status_kinds, params[:status]), include_blank: "请选择" %>
+  <%= submit_tag "搜索"%>
+  <%= link_to '导出', coins_logs_path({q: params[:q]}.merge(format: :csv)) %>
+<% end -%>
+
+  <table class="table table-bordered">
+   <thead>
+    <tr>
+      <% @headers.each do |name| %>
+        <th><%= name %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @coins_log.each do |user_log| %>
+      <tr>
+        <td><%= user_log.caishuo_id %></td>
+        <td><%= user_log.coins_id %></td>
+        <td><%= user_log.name %></td>
+        <td><%= user_log.amount %></td>
+        <td><%= user_log.status %></td>  
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+<%= will_paginate @coins_log %>
+<br/>
+<!-- 统计总数-->
+<span>总计:<%= @coins_log.total_entries %></span>
+<br>

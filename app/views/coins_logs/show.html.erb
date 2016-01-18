@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @coins_log.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @coins_log.amount %>
+</p>
+
+<%= link_to 'Edit', edit_coins_log_path(@coins_log) %> |
+<%= link_to 'Back', coins_logs_path %>

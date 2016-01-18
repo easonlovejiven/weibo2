@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>用户列表</h1>
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.search_field :caishuo_id_eq, placeholder: "用户 ID" %>
+  <%= f.search_field :coins_id_eq ,placeholder: "产品 ID"%>
+  <%= f.search_field :name_cont,placeholder: "用户姓名" %>
+  购买状态: 
+  <%= f.select :status_eq, options_for_select([["投资状态"],["投标成功"], ["投标失败"],["付款成功"],["付款失败"],["取消"]], params[:status]) %>
+  <%= submit_tag "搜索"%>
+  
+<% end -%>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>财说用户ID</th>
+      <th>产品ID</th>
+      <th>姓名</th>
+      <th>投资金额</th>
+      <th>状态</th>
+      <th>操作</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @user_logs.each do |user_log| %>
+      <tr>
+        <td><%= user_log.caishuo_id %></td>
+        <td><%= user_log.coins_id %></td>
+        <td><%= user_log.name %></td>
+        <td><%= user_log.amount %></td>
+        <td><%= user_log.status %></td>
+        <td>
+          <%= link_to '查看', user_log %>
+          <%= link_to '编辑', edit_user_log_path(user_log) %>
+          <%= link_to '删除', user_log, method: :delete, data: { confirm: '你确定？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @user_logs %> 
+<br>
+
+<%= link_to '新建', new_user_log_path %>

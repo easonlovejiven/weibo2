@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Caishuo:</strong>
+  <%= @user_log.caishuo_id %>
+</p>
+
+<p>
+  <strong>Coins:</strong>
+  <%= @user_log.coins_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_log.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @user_log.amount %>
+</p>
+
+
+<p>
+  <strong>Status:</strong>
+  <%= @user_log.status %>
+</p>
+
+<%= link_to 'Edit', edit_user_log_path(@user_log) %> |
+<%= link_to 'Back', user_logs_path %>

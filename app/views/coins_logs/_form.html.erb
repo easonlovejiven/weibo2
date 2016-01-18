@@ -1,0 +1,25 @@
+<%= form_for(@coins_log) do |f| %>
+  <% if @coins_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@coins_log.errors.count, "error") %> prohibited this coins_log from being saved:</h2>
+
+      <ul>
+      <% @coins_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
